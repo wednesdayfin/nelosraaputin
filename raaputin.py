@@ -3,10 +3,10 @@ import random
 import pyttsx
 
 class DmozSpider(scrapy.Spider):
-    name = "nelonen"
+    name = "heinlein"
     allowed_domains = ["4chan.org"]
     start_urls = [
-        "http://boards.4chan.org/a/"
+        "https://www.goodreads.com/author/quotes/205.Robert_A_Heinlein"
     ]
     engine = pyttsx.init()
     rate = engine.getProperty('rate')
@@ -19,7 +19,7 @@ class DmozSpider(scrapy.Spider):
     def parse(self, response):
     	num = random.randint(0,9)
     	
-
+	'''
         for sel in response.xpath('//form/div/div/div/div'):
         	title = sel.xpath('div/span[1]/text()').extract()
         	if (len(title) > 1):
@@ -31,6 +31,19 @@ class DmozSpider(scrapy.Spider):
 		posti = i.xpath('blockquote/text()').extract()
 		if (len(posti) > 1):
 			print ' '.join(posti)
-
+	
+	''''
+	
+	'''
+	print response.xpath('//form/div/div/div/div/div/span[1]/text()').extract()[num]
+	print response.xpath('//form/div/div/div/div/blockquote/text()').extract()[num]
+	'''
+	print "\nnumeroksi arpoutui: %d\n" % num
+	
+        for sel in response.xpath('//form/div/div/div/div'):
+        	title = sel.xpath('div/span[1]/text()').extract()
+        	if (len(title) > 1):
+        		print title[1]
 ##to do:
 #text-to-speech
+	
