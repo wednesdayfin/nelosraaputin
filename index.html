@@ -41,14 +41,14 @@
 	<div class="writer_container" id="heinlein"><img class="portrait" id="heinlein_kuva" src="heinlein.png"><div class="name">Robert A. Heinlein</div></div>
 	<div class="writer_container" id="lovecraft"><img class="portrait" id="lovecraft_kuva" src="lovecraft.png"><div class="name">H. P. Lovecraft</div></div>
 	</div>
-	<div id="quote_area"><p id="demo"></p></div>
+	<div id="quote_area"></div>
 
   <script>
 	document.getElementById("heinlein").addEventListener("click", function(){
-		document.getElementById("demo").innerHTML = "Heinlein";
+		document.getElementById("quote_area").innerHTML = "Heinlein";
 	});
 	document.getElementById("lovecraft").addEventListener("click", function(){
-		document.getElementById("demo").innerHTML = "Lovecraft";
+		document.getElementById("quote_area").innerHTML = "Lovecraft";
 	});
   </script>
   </body>
