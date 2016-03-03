@@ -8,16 +8,14 @@ class DmozSpider(scrapy.Spider):
     start_urls = [
         "https://www.goodreads.com/author/quotes/205.Robert_A_Heinlein"
     ]
-    engine = pyttsx.init()
-    rate = engine.getProperty('rate')
-    engine.setProperty('rate', rate - 50)
+
     
     #engine.say('Progress isn\'t made by early risers. It\'s made by lazy men trying to find easier ways to do something.')
     #engine.runAndWait()
     
 
     def parse(self, response):
-    	num = random.randint(0,9)
+    	num = random.randint(0,29)
     	
 	'''
         for sel in response.xpath('//form/div/div/div/div'):
@@ -32,7 +30,7 @@ class DmozSpider(scrapy.Spider):
 		if (len(posti) > 1):
 			print ' '.join(posti)
 	
-	''''
+	'''
 	
 	'''
 	print response.xpath('//form/div/div/div/div/div/span[1]/text()').extract()[num]
@@ -40,10 +38,19 @@ class DmozSpider(scrapy.Spider):
 	'''
 	print "\nnumeroksi arpoutui: %d\n" % num
 	
-        for sel in response.xpath('//form/div/div/div/div'):
-        	title = sel.xpath('div/span[1]/text()').extract()
-        	if (len(title) > 1):
-        		print title[1]
+	lista = []
+	
+        for sel in response.xpath('//div/div/div/div/div/div/div'):
+        	quote = sel.xpath('div[@class="quoteText"][1]/text()').extract()
+        	if (len(quote) > 1):
+        		lista.append(' '.join(quote))
+        
+        print lista[num]
+        engine = pyttsx.init()
+    	rate = engine.getProperty('rate')
+    	engine.setProperty('rate', rate - 50)
+        engine.say(lista[num])
+        engine.runAndWait()
+        	
 ##to do:
 #text-to-speech
-	
