@@ -1,1 +1,1 @@
-# A Robert A. Heinlein quote machine
+# A classic writer quote machine
